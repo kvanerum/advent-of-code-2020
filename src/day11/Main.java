@@ -3,6 +3,7 @@ package day11;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,7 +22,7 @@ public class Main {
     private static boolean doPassPart1(List<List<Character>> currentState) {
         boolean hasChanged = false;
 
-        List<List<Character>> snapshot = currentState.stream().map(row -> row.stream().collect(Collectors.toList())).collect(Collectors.toList());
+        List<List<Character>> snapshot = currentState.stream().map(row -> new ArrayList<>(row)).collect(Collectors.toList());
 
         for (int row = 0; row < currentState.size(); ++row) {
             for (int column = 0; column < currentState.get(row).size(); ++column) {
@@ -43,7 +44,7 @@ public class Main {
     private static boolean doPassPart2(List<List<Character>> currentState) {
         boolean hasChanged = false;
 
-        List<List<Character>> snapshot = currentState.stream().map(row -> row.stream().collect(Collectors.toList())).collect(Collectors.toList());
+        List<List<Character>> snapshot = currentState.stream().map(row -> new ArrayList<>(row)).collect(Collectors.toList());
 
         for (int row = 0; row < currentState.size(); ++row) {
             for (int column = 0; column < currentState.get(row).size(); ++column) {
@@ -62,25 +63,11 @@ public class Main {
         return hasChanged;
     }
 
-    private static void print(List<List<Character>> state) {
-        state.forEach(row -> {
-            row.forEach(c -> {
-                System.out.print(c);
-            });
-            System.out.println();
-        });
-        System.out.println();
-        System.out.println();
-        System.out.println();
-    }
-
     private static int getOccupiedAdjacentSeatsPart1(List<List<Character>> state, int row, int column) {
         int numOccupied = 0;
         for (int r = Math.max(row - 1, 0); r < Math.min(row + 2, state.size()); ++r) {
             for (int c = Math.max(column - 1, 0); c < Math.min(column + 2, state.get(0).size()); ++c) {
-                if (row == r && column == c) {
-                    continue;
-                } else if (state.get(r).get(c) == '#') {
+                if (row != r && column != c && state.get(r).get(c) == '#') {
                     numOccupied++;
                 }
             }
