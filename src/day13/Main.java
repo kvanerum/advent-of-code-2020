@@ -11,8 +11,8 @@ import java.util.stream.Collectors;
 
 public class Main {
     private static class Input {
-        public int earliestTimestamp;
-        public List<Integer> busses;
+        public final int earliestTimestamp;
+        public final List<Integer> busses;
 
         public Input(int earliestTimestamp, List<Integer> busses) {
             this.earliestTimestamp = earliestTimestamp;
@@ -24,11 +24,9 @@ public class Main {
         Input input = readInput();
 
         int firstBus = input.busses.stream()
-                .filter(Objects::nonNull)
-                .sorted(Comparator.comparingInt(a -> (a -
-                                                      input.earliestTimestamp %
-                                                      a)))
-                .findFirst()
+                .filter(Objects::nonNull).min(Comparator.comparingInt(a -> (a -
+                                                                            input.earliestTimestamp %
+                                                                            a)))
                 .get();
 
         System.out.println(firstBus * (firstBus - input.earliestTimestamp % firstBus));

@@ -76,23 +76,23 @@ public class Main {
         List<String> lines = Files.lines(Paths.get("src/day4/input.txt")).collect(Collectors.toList());
 
         List<String> passports = new ArrayList<>();
-        String current = "";
+        StringBuilder current = new StringBuilder();
 
         for (String line : lines) {
             line = line.trim();
 
             if (line.length() == 0) {
-                if (!current.isEmpty()) {
-                    passports.add(current);
-                    current = "";
+                if (current.length() > 0) {
+                    passports.add(current.toString());
+                    current = new StringBuilder();
                 }
             } else {
-                current += " " + line;
+                current.append(" ").append(line);
             }
         }
 
-        if (!current.isEmpty()) {
-            passports.add(current);
+        if (current.length() > 0) {
+            passports.add(current.toString());
         }
 
         return passports;

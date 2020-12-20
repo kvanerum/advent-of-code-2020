@@ -63,7 +63,7 @@ public class Main {
 
         Map<String, Map<String, Integer>> rules = new HashMap<>();
         lines.forEach(line -> {
-            Pattern pattern = Pattern.compile("^(.*) bags contain ([no other bags]|[\\d+ [\\w\\s]* bag[s]?[, ]?]+)\\.$");
+            Pattern pattern = Pattern.compile("^(.*) bags contain ([no other bags]|[\\d+ \\w\\s* bags?, ?]+)\\.$");
             Matcher matcher = pattern.matcher(line);
 
             if (matcher.matches()) {

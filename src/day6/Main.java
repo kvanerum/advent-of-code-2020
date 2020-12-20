@@ -34,21 +34,21 @@ public class Main {
         List<String> lines = Files.lines(Paths.get("src/day6/input.txt")).collect(Collectors.toList());
 
         List<String> groups = new ArrayList<>();
-        String current = "";
+        StringBuilder current = new StringBuilder();
 
         for (String line : lines) {
             if (line.length() == 0) {
-                if (!current.isEmpty()) {
-                    groups.add(current);
-                    current = "";
+                if (current.length() > 0) {
+                    groups.add(current.toString());
+                    current = new StringBuilder();
                 }
             } else {
-                current += "\n" + line;
+                current.append("\n").append(line);
             }
         }
 
-        if (!current.isEmpty()) {
-            groups.add(current);
+        if (current.length() > 0) {
+            groups.add(current.toString());
         }
 
         return groups;

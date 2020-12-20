@@ -22,7 +22,7 @@ public class Main {
     private static boolean doPassPart1(List<List<Character>> currentState) {
         boolean hasChanged = false;
 
-        List<List<Character>> snapshot = currentState.stream().map(row -> new ArrayList<>(row)).collect(Collectors.toList());
+        List<List<Character>> snapshot = currentState.stream().map(ArrayList::new).collect(Collectors.toList());
 
         for (int row = 0; row < currentState.size(); ++row) {
             for (int column = 0; column < currentState.get(row).size(); ++column) {
@@ -44,7 +44,7 @@ public class Main {
     private static boolean doPassPart2(List<List<Character>> currentState) {
         boolean hasChanged = false;
 
-        List<List<Character>> snapshot = currentState.stream().map(row -> new ArrayList<>(row)).collect(Collectors.toList());
+        List<List<Character>> snapshot = currentState.stream().map(ArrayList::new).collect(Collectors.toList());
 
         for (int row = 0; row < currentState.size(); ++row) {
             for (int column = 0; column < currentState.get(row).size(); ++column) {

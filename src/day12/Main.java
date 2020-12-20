@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class Main {
-    private static final Pattern pattern = Pattern.compile("^(N|S|E|W|L|R|F)(\\d+)$");
+    private static final Pattern pattern = Pattern.compile("^([NSEWLRF])(\\d+)$");
 
     private static int horizontalPos = 0;
     private static int verticalPos = 0;
